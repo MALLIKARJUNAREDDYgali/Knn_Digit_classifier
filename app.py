@@ -5,7 +5,7 @@ import numpy as np
 import joblib
 
 # Load the trained KNN model
-model = joblib.load("knn_mnist.pkl")
+model = joblib.load("knn_mnist_small.pkl")
 
 st.set_page_config(page_title="KNN Digit Classifier", layout="centered")
 st.title("🧠 Digit Classifier")
