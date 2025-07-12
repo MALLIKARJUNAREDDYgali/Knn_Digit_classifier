@@ -7,9 +7,31 @@ import joblib
 # Load the trained KNN model
 model = joblib.load("knn_mnist_small.pkl")
 
+# Set page settings
 st.set_page_config(page_title="KNN Digit Classifier", layout="centered")
-st.title("🧠 Digit Classifier")
-st.markdown("Draw a digit (0–9) below and click **Predict**")
+st.markdown("<h1 style='text-align: center; color: #4CAF50;'>🧠 Digit Classifier</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center;'>Draw a digit (0–9) below and click <b>Predict</b></p>", unsafe_allow_html=True)
+
+# Custom CSS styling for buttons and selection
+st.markdown("""
+    <style>
+        div.stButton > button:first-child {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 0.5em 1.2em;
+            transition: background-color 0.3s ease;
+        }
+        div.stButton > button:first-child:hover {
+            background-color: #388E3C;
+            color: white;
+        }
+        .st-cp {
+            background-color: #4CAF50 !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # Create a canvas component
 canvas_result = st_canvas(
@@ -42,5 +64,5 @@ if canvas_result.image_data is not None:
         prediction = model.predict(img_array)[0]
         confidence = model.predict_proba(img_array).max()
         
-        st.success(f"Predicted Digit: {prediction}")
-        st.info(f"Confidence: {confidence:.2f}")
+        st.success(f"🎯 Predicted Digit: {prediction}")
+        st.info(f"📊 Confidence: {confidence:.2f}")
